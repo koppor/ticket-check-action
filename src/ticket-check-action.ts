@@ -1,4 +1,4 @@
-import { debug as log, getInput, setFailed, setOutput } from '@actions/core';
+import { debug as log, info, getInput, setFailed, setOutput } from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 
 // Helper function to retrieve ticket number from a string (either a shorthand reference or a full URL)
@@ -285,7 +285,15 @@ export async function run(): Promise<void> {
 
     if (!bodyURLRegexBase) {
       debug('failure', 'Title, branch, and body do not contain a reference to a ticket, and no body URL regex was set');
-      setFailed('No ticket was referenced in this pull request');
+
+      const message = 'No ticket was referenced in this pull request';
+
+      if (outputOnly) {
+        info(message);
+        setOutput("ticketNumber", -1);
+      } else {
+        setFailed(message);
+      }
 
       return;
     }
@@ -352,7 +360,15 @@ export async function run(): Promise<void> {
 
     if (titleCheck === null && branchCheck === null && bodyCheck === null && bodyURLCheck === null) {
       debug('failure', 'Title, branch, and body do not contain a reference to a ticket');
-      setFailed('No ticket was referenced in this pull request');
+
+      const message = 'No ticket was referenced in this pull request';
+
+      if (outputOnly) {
+        info(message);
+        setOutput("ticketNumber", -1);
+      } else {
+        setFailed(message);
+      }
 
       return;
     }

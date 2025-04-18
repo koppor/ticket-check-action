@@ -127,7 +127,12 @@ jobs:
 | bodyURLRegex      |          | The regular expression used to search the body for a URL reference (example `https://github.com/octocat/hello-world/issues/1`)                       |                                  |
 | bodyURLRegexFlags |          | The flags applied to the body regular expression when searching for a URL reference                                                                  | gim                              |
 | exemptUsers       |          | Comma separated string of usernames that will be exempt from all checks. Most useful for bot/automated PRs (example "octocat,dependabot")            |                                  |
+| outputOnly        |          | Determine ticket number and output it. No other action taken                                                                                         |                                  |
 | quiet             |          | If `true`, don't comment when a PR title is updated                                                                                                  | true                             |
+
+## Outputs
+
+- `ticketNumber`: The ticket number. If `outputOnly` is active, `-1` is returned in case of a non-found ticket number.
 
 ## Releasing
 
