@@ -3,7 +3,6 @@
 ## Unreleased
 
 - Added output `ticketNumber` and option `outptOnly`.
-- Fixed: `bodyRegexFlags` have default `gim`.
 
 ## 2.0.0 (Apr 20, 2023)
 Set action node version to 16

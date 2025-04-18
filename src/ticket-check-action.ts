@@ -208,7 +208,7 @@ export async function run(): Promise<void> {
 
     // Check for a ticket reference number in the body
     const bodyRegexBase = getInput('bodyRegex', { required: true });
-    const bodyRegexFlags = getInput('bodyRegexFlags') || 'gim';
+    const bodyRegexFlags = getInput('bodyRegexFlags', { required: true });
     const bodyRegex = new RegExp(bodyRegexBase, bodyRegexFlags);
     const bodyCheck = bodyRegex.exec(body);
 
