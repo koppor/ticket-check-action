@@ -59,7 +59,7 @@ export async function run(): Promise<void> {
       debug('match array groups for linkTicket', JSON.stringify(matchArray.groups));
 
       if (!ticketLink) {
-        setOutput("ticketNumber", -1);
+        setOutput("ticketNumber", "-1");
 
         return;
       }
@@ -68,7 +68,7 @@ export async function run(): Promise<void> {
 
       if (!ticketNumber) {
         debug('ticketNumber not found', 'ticketNumber group not found in match array.');
-        setOutput("ticketNumber", -1);
+        setOutput("ticketNumber", "-1");
 
         return undefined;
       }
@@ -136,7 +136,7 @@ export async function run(): Promise<void> {
 
         if (outputOnly) {
           info(messageCouldNotExtract);
-          setOutput("ticketNumber", -1);
+          setOutput("ticketNumber", "-1");
         } else {
           setFailed(messageCouldNotExtract);
         }
@@ -229,7 +229,7 @@ export async function run(): Promise<void> {
 
       if (id === null) {
         setFailed('Could not extract a ticket shorthand reference from the body');
-        setOutput("ticketNumber", -1);
+        setOutput("ticketNumber", "-1");
 
         return;
       }
@@ -301,7 +301,7 @@ export async function run(): Promise<void> {
 
       if (outputOnly) {
         info(message);
-        setOutput("ticketNumber", -1);
+        setOutput("ticketNumber", "-1");
       } else {
         setFailed(message);
       }
@@ -325,7 +325,7 @@ export async function run(): Promise<void> {
 
         if (outputOnly) {
           info(messageCouldNotExtract);
-          setOutput("ticketNumber", -1);
+          setOutput("ticketNumber", "-1");
         } else {
           setFailed(messageCouldNotExtract);
         }
@@ -383,7 +383,7 @@ export async function run(): Promise<void> {
 
       if (outputOnly) {
         info(message);
-        setOutput("ticketNumber", -1);
+        setOutput("ticketNumber", "-1");
       } else {
         setFailed(message);
       }
