@@ -59,6 +59,8 @@ export async function run(): Promise<void> {
       debug('match array groups for linkTicket', JSON.stringify(matchArray.groups));
 
       if (!ticketLink) {
+        setOutput("ticketNumber", -1);
+
         return;
       }
 
@@ -66,6 +68,7 @@ export async function run(): Promise<void> {
 
       if (!ticketNumber) {
         debug('ticketNumber not found', 'ticketNumber group not found in match array.');
+        setOutput("ticketNumber", -1);
 
         return undefined;
       }
@@ -129,7 +132,14 @@ export async function run(): Promise<void> {
       const id = extractId(branch);
 
       if (id === null) {
-        setFailed('Could not extract a ticket ID reference from the branch');
+        const messageCouldNotExtract = 'Could not extract a ticket ID reference from the branch';
+
+        if (outputOnly) {
+          info(messageCouldNotExtract);
+          setOutput("ticketNumber", -1);
+        } else {
+          setFailed(messageCouldNotExtract);
+        }
 
         return;
       }
@@ -219,6 +229,7 @@ export async function run(): Promise<void> {
 
       if (id === null) {
         setFailed('Could not extract a ticket shorthand reference from the body');
+        setOutput("ticketNumber", -1);
 
         return;
       }
@@ -310,7 +321,14 @@ export async function run(): Promise<void> {
       const id = extractId(bodyURLCheck[0]);
 
       if (id === null) {
-        setFailed('Could not extract a ticket URL from the body');
+        const messageCouldNotExtract = 'Could not extract a ticket URL from the body';
+
+        if (outputOnly) {
+          info(messageCouldNotExtract);
+          setOutput("ticketNumber", -1);
+        } else {
+          setFailed(messageCouldNotExtract);
+        }
 
         return;
       }
